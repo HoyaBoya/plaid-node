@@ -809,6 +809,61 @@ describe('plaid.Client', () => {
       });
     });
 
+    describe('income verification', () => {
+      const id = 'some fake id'
+
+      describe('getPaystub()', () => {
+        it('returns an ok result', async () => {
+          const result = await pCl.getPaystub(id)
+          expect(result).to.be.ok()
+          expect(result.employee).to.be.ok()
+
+        })
+      })
+
+      describe('getPaystubs()', () => {
+        it('returns an ok result', async () => {
+          const result = await pCl.getPaystubs(id)
+          expect(result).to.be.ok()
+
+          const paystub = result.paystubs[0]
+          expect(paystub).to.be.ok()
+          expect(paystub.employee).to.be.ok()
+        })
+      })
+
+      describe('getSummary()', () => {
+        it('returns an ok result', async () => {
+          const summary = await pCl.getSummary(id)
+          expect(summary).to.be.ok()
+          expect(summary.income_summaries).to.be.ok()
+          expect(summary.income_summaries[0]).to.be.ok()
+        })
+      })
+
+      describe('downloadDocuments()', () => {
+        let sandbox
+        let stub
+
+        beforeEach(() => {
+          sandbox = sinon.createSandbox()
+          stub = sandbox.stub(pCl, '_requestWithIncomeVerificationId').resolves(true)
+        })
+
+        afterEach(() => {
+          sandbox.restore()
+        })
+
+        it.skip('invokes the requestWithIncomeVerification stub', async () => {
+          const zip = await pCl.downloadDocuments(id)
+          sandbox.assert.calledWith(stub, '/income/verification/documents/download', { binary: true })
+
+          // This currently throws a download error
+          // expect(zip).to.be.ok()
+        })
+      })
+    })
+
     describe('assets', () => {
       var days_requested = 60;
       var options = {
@@ -1295,7 +1350,7 @@ describe('plaid.Client', () => {
         ], cb);
       });
 
-      it(`successfully goes through the 
+      it(`successfully goes through the
       entire deposit switch alt flow`, cb => {
         async.waterfall([
           createDepositSwitchAlt,
