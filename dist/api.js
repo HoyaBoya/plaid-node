@@ -1716,13 +1716,7 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             };
         }),
         /**
-         * NOTE: Upandup Fork
-         *
-         * `/income/verification/paystubs/get` returns the information collected from all paystubs that were used to verify an end user\'s income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.
-         * @summary Retrieve information from the paystub used for income verification
-         * @param {IncomeVerificationPaystubGetRequest} [incomeVerificationPaystubGetRequest]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
+         * FORK
          */
         incomeVerificationPaystubsGet: (incomeVerificationPaystubsGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
             const localVarPath = `/income/verification/paystub/get`;
@@ -3567,6 +3561,15 @@ const PlaidApiFp = function (configuration) {
         incomeVerificationDocumentsDownload(incomeVerificationDocumentsDownloadRequest, options) {
             return __awaiter(this, void 0, void 0, function* () {
                 const localVarAxiosArgs = yield localVarAxiosParamCreator.incomeVerificationDocumentsDownload(incomeVerificationDocumentsDownloadRequest, options);
+                return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
+            });
+        },
+        /**
+         * FORK
+         */
+        incomeVerificationPaystubsGet(incomeVerificationPaystubsGetRequest, options) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const localVarAxiosArgs = yield localVarAxiosParamCreator.incomeVerificationPaystubsGet(incomeVerificationPaystubsGetRequest, options);
                 return common_1.createRequestFunction(localVarAxiosArgs, axios_1.default, base_1.BASE_PATH, configuration);
             });
         },
