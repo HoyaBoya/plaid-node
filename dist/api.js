@@ -4397,7 +4397,7 @@ const PlaidApiFactory = function (configuration, basePath, axios) {
          * FORK
          */
         incomeVerificationPaystubsGet(incomeVerificationPaystubsGetRequest, options) {
-            return localVarFp.incomeVerificationPaystubsGet(incomeVerificationPaystubGetsRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.incomeVerificationPaystubsGet(incomeVerificationPaystubsGetsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * `/income/verification/paystub/get` returns the information collected from the paystub that was used to verify an end user\'s income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.
@@ -5127,6 +5127,12 @@ class PlaidApi extends base_1.BaseAPI {
      */
     incomeVerificationDocumentsDownload(incomeVerificationDocumentsDownloadRequest, options) {
         return exports.PlaidApiFp(this.configuration).incomeVerificationDocumentsDownload(incomeVerificationDocumentsDownloadRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * FORK
+     */
+    incomeVerificationPaystubsGet(incomeVerificationPaystubsGetRequest, options) {
+        return exports.PlaidApiFp(this.configuration).incomeVerificationPaystubsGet(incomeVerificationPaystubsGetRequest, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * `/income/verification/paystub/get` returns the information collected from the paystub that was used to verify an end user\'s income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.
