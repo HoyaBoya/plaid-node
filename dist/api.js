@@ -1716,6 +1716,42 @@ const PlaidApiAxiosParamCreator = function (configuration) {
             };
         }),
         /**
+         * NOTE: Upandup Fork
+         *
+         * `/income/verification/paystubs/get` returns the information collected from all paystubs that were used to verify an end user\'s income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.
+         * @summary Retrieve information from the paystub used for income verification
+         * @param {IncomeVerificationPaystubGetRequest} [incomeVerificationPaystubGetRequest]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        incomeVerificationPaystubsGet: (incomeVerificationPaystubsGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
+            const localVarPath = `/income/verification/paystub/get`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions = Object.assign(Object.assign({ method: 'POST' }, baseOptions), options);
+            const localVarHeaderParameter = {};
+            const localVarQueryParameter = {};
+            // authentication clientId required
+            yield common_1.setApiKeyToObject(localVarHeaderParameter, "PLAID-CLIENT-ID", configuration);
+            // authentication plaidVersion required
+            yield common_1.setApiKeyToObject(localVarHeaderParameter, "Plaid-Version", configuration);
+            // authentication secret required
+            yield common_1.setApiKeyToObject(localVarHeaderParameter, "PLAID-SECRET", configuration);
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            common_1.setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = Object.assign(Object.assign(Object.assign({}, localVarHeaderParameter), headersFromBaseOptions), options.headers);
+            localVarRequestOptions.data = common_1.serializeDataIfNeeded(incomeVerificationPaystubsGetRequest, localVarRequestOptions, configuration);
+            return {
+                url: common_1.toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        }),
+        /**
          * `/income/verification/paystub/get` returns the information collected from the paystub that was used to verify an end user\'s income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.
          * @summary Retrieve information from the paystub used for income verification
          * @param {IncomeVerificationPaystubGetRequest} [incomeVerificationPaystubGetRequest]
