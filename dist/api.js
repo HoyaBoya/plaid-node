@@ -4394,6 +4394,12 @@ const PlaidApiFactory = function (configuration, basePath, axios) {
             return localVarFp.incomeVerificationDocumentsDownload(incomeVerificationDocumentsDownloadRequest, options).then((request) => request(axios, basePath));
         },
         /**
+         * FORK
+         */
+        incomeVerificationPaystubsGet(incomeVerificationPaystubsGetRequest, options) {
+            return localVarFp.incomeVerificationPaystubsGet(incomeVerificationPaystubGetsRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
          * `/income/verification/paystub/get` returns the information collected from the paystub that was used to verify an end user\'s income. It can be called once the status of the verification has been set to `VERIFICATION_STATUS_PROCESSING_COMPLETE`, as reported by the `INCOME: verification_status` webhook. Attempting to call the endpoint before verification has been completed will result in an error.
          * @summary Retrieve information from the paystub used for income verification
          * @param {IncomeVerificationPaystubGetRequest} [incomeVerificationPaystubGetRequest]
