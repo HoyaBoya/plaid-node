@@ -1719,7 +1719,7 @@ const PlaidApiAxiosParamCreator = function (configuration) {
          * FORK
          */
         incomeVerificationPaystubsGet: (incomeVerificationPaystubsGetRequest, options = {}) => __awaiter(this, void 0, void 0, function* () {
-            const localVarPath = `/income/verification/paystub/get`;
+            const localVarPath = `/income/verification/paystubs/get`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, common_1.DUMMY_BASE_URL);
             let baseOptions;
